@@ -1,0 +1,8 @@
+{
+  "classification": "Warm",
+  "priority_score": 65,
+  "explanation": "The customer has shown interest but needs further discussion.",
+  "customer_business_problem": "The customer wants to automate repetitive business tasks.",
+  "recommended_action": "Schedule a consultation to understand the requirements.",
+  "follow_up_message": "Thank you for your interest. We would like to discuss your requirements and explore how our solution can help."
+}
