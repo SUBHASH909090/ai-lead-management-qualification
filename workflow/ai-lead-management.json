@@ -1,0 +1,391 @@
+{
+  "name": "AI Lead Management Automation",
+  "nodes": [
+    {
+      "parameters": {
+        "formTitle": "AI Lead Management System",
+        "formDescription": "Submit your business requirements to receive an AI-powered assessment.",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "NAME",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "GMAIL",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Service Interested In",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "BUDGET",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Requirements",
+              "fieldType": "textarea",
+              "requiredField": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.6,
+      "position": [
+        -368,
+        -32
+      ],
+      "id": "f5a2c033-f621-40c5-a395-01bac08d4d3b",
+      "name": "On form submission",
+      "webhookId": "6aa9eec3-03f4-4178-bec6-7dafd91973a1"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Analyze this customer lead submission:\n\n{{ JSON.stringify($json) }}\n\nEvaluate the customer's business potential.\n\nClassification:\n- Hot: Strong buying intent, clear business need, and readiness to proceed.\n- Warm: Genuine interest, but needs more information or time.\n- Cold: Weak interest, unclear requirements, or no clear buying intent.\n\nTasks:\n1. Classify the lead as Hot, Warm, or Cold.\n2. Assign a priority score from 1 to 100.\n3. Explain the classification.\n4. Identify the customer's main business problem.\n5. Recommend the next action.\n6. Write a professional follow-up message.\n\nDo not invent missing information.\nA high budget alone does not make a lead Hot.\nFollow the Structured Output Parser schema exactly.",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        -144,
+        -32
+      ],
+      "id": "5878e686-5080-4575-822d-4a44a540bd91",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-2.5-flash",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1.2,
+      "position": [
+        -144,
+        160
+      ],
+      "id": "5fc7e6c1-c38a-4d3d-a347-50c510469680",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": null,
+          "name": "",
+          "__aiGatewayManaged": true
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1fSXsNphzP3TwPX1rojNqiTZLcGK5Od1BEmGi4nF4IkQ",
+          "mode": "list",
+          "cachedResultName": "Untitled spreadsheet",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1fSXsNphzP3TwPX1rojNqiTZLcGK5Od1BEmGi4nF4IkQ/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1fSXsNphzP3TwPX1rojNqiTZLcGK5Od1BEmGi4nF4IkQ/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {},
+          "matchingColumns": [
+            "id"
+          ],
+          "schema": [
+            {
+              "id": "name",
+              "displayName": "name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "latitude",
+              "displayName": "latitude",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "longitude",
+              "displayName": "longitude",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "address",
+              "displayName": "address",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "phone",
+              "displayName": "phone",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "website",
+              "displayName": "website",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "output",
+              "displayName": "output",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "threadId",
+              "displayName": "threadId",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "labelIds",
+              "displayName": "labelIds",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "summary",
+              "displayName": "summary",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "customer_requirements",
+              "displayName": "customer_requirements",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "objections",
+              "displayName": "objections",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "next_steps",
+              "displayName": "next_steps",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "sales_status",
+              "displayName": "sales_status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "customer_name",
+              "displayName": "customer_name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "product",
+              "displayName": "product",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "transcript",
+              "displayName": "transcript",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "call_duration",
+              "displayName": "call_duration",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "recording_consent",
+              "displayName": "recording_consent",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        224,
+        -32
+      ],
+      "id": "5ca59d42-589c-4b6d-93b4-3534b13fcf09",
+      "name": "Append row in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "HB4rGszpPTtjNd6W",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $('On form submission').first().json.GMAIL }}",
+        "subject": "Your Business Requirements – AI Lead Assessment",
+        "message": "=Hello {{ $('On form submission').item.json.NAME }},\n\nYour business requirements have been analyzed successfully.\n\nLead Status:\n{{ $('AI Agent').item.json.output.classification }}\n\nPriority Score:\n{{ $('AI Agent').item.json.output.priority_score }}/100\n\nAssessment:\n{{ $('AI Agent').item.json.output.explanation }}\n\nBusiness Problem:\n{{ $('AI Agent').item.json.output.customer_business_problem }}\n\nRecommended Action:\n{{ $('AI Agent').item.json.output.recommended_action }}\n\nFollow-up Message:\n{{ $('AI Agent').item.json.output.follow_up_message }}\n\nRegards,\nSoma Subhash\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        448,
+        -32
+      ],
+      "id": "0e6e50d0-de09-4ef3-a371-d50a6bc29d0c",
+      "name": "Send a message",
+      "webhookId": "68bc3632-f904-4ef4-8112-051ed2f9546a",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "a4LOpceYaYBkHeLZ",
+          "name": "Gmail account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "On form submission": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Append row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append row in sheet": {
+      "main": [
+        [
+          {
+            "node": "Send a message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "79c9f349-c382-4aea-b84c-43f2ad2cde0d",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "3cf336dbc9db6ed79f9208cd8267abb89f15a78c1e8133df90f53a56cea19b84"
+  },
+  "nodeGroups": [],
+  "id": "LhagTL60lXMpXxuU",
+  "tags": []
+}
